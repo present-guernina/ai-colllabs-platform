@@ -1,0 +1,2644 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Knowledge Quiz - Leer AI op jouw niveau. Van beginners tot corporate teams.">
+    <title>AI Knowledge Quiz - AI COLLLABS</title>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    
+    <style>
+        /* ===========================================
+           AI COLLLABS - Design System (behouden)
+           =========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Original AI COLLLABS Colors */
+            --primary-orange: #f97316;
+            --primary-green: #22c55e;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            
+            /* Original Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-green) 100%);
+            --gradient-text: linear-gradient(to right, var(--primary-orange), var(--primary-green));
+            
+            /* Original Typography */
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            
+            /* Original Spacing */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* Original Border radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Original Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Original Transitions */
+            --transition-fast: 0.15s ease-out;
+            --transition-base: 0.25s ease-out;
+            --transition-slow: 0.35s ease-out;
+        }
+
+        /* Original Base Typography */
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--gray-50);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.875rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1.125rem; }
+
+        /* Original Utility Classes */
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+        }
+
+        /* Original Navigation (behouden) */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--gray-200);
+            padding: var(--spacing-md) 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transform: rotate(12deg);
+            transition: transform var(--transition-base);
+        }
+
+        .nav-logo-icon:hover {
+            transform: rotate(12deg) scale(1.1);
+        }
+
+        .nav-logo-icon span {
+            transform: rotate(-12deg);
+        }
+
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+            position: relative;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-orange);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: 1px;
+        }
+
+        /* Original Button Styles (behouden) */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: 1rem;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+            color: var(--gray-800);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-orange);
+            border: 2px solid var(--primary-orange);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-orange);
+            color: white;
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        /* ENHANCED 3D Rubik's Cube - More Visible */
+        .rubiks-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: var(--spacing-3xl) 0;
+            perspective: 1500px;
+            perspective-origin: center center;
+            background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+            padding: var(--spacing-3xl);
+            border-radius: var(--radius-2xl);
+            min-height: 400px;
+        }
+
+        .rubiks-cube {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 20s infinite linear;
+            cursor: pointer;
+            transform: rotateX(-15deg) rotateY(15deg);
+        }
+
+        .rubiks-cube:hover {
+            animation-duration: 8s;
+            transform: rotateX(-15deg) rotateY(15deg) scale(1.1);
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 4px;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Make each face clearly distinct and visible */
+        .cube-face.front {
+            transform: rotateY(0deg) translateZ(150px);
+            background: linear-gradient(135deg, 
+                rgba(249, 115, 22, 0.9) 0%, 
+                rgba(249, 115, 22, 1) 50%, 
+                rgba(234, 88, 12, 0.9) 100%);
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+        }
+
+        .cube-face.back {
+            transform: rotateY(180deg) translateZ(150px);
+            background: linear-gradient(135deg, 
+                rgba(34, 197, 94, 0.9) 0%, 
+                rgba(34, 197, 94, 1) 50%, 
+                rgba(22, 163, 74, 0.9) 100%);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
+        }
+
+        .cube-face.right {
+            transform: rotateY(90deg) translateZ(150px);
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.9) 0%, 
+                rgba(59, 130, 246, 1) 50%, 
+                rgba(37, 99, 235, 0.9) 100%);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .cube-face.left {
+            transform: rotateY(-90deg) translateZ(150px);
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.9) 0%, 
+                rgba(139, 92, 246, 1) 50%, 
+                rgba(124, 58, 237, 0.9) 100%);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .cube-face.top {
+            transform: rotateX(90deg) translateZ(150px);
+            background: linear-gradient(135deg, 
+                rgba(239, 68, 68, 0.9) 0%, 
+                rgba(239, 68, 68, 1) 50%, 
+                rgba(220, 38, 38, 0.9) 100%);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+        }
+
+        .cube-face.bottom {
+            transform: rotateX(-90deg) translateZ(150px);
+            background: linear-gradient(135deg, 
+                rgba(245, 158, 11, 0.9) 0%, 
+                rgba(245, 158, 11, 1) 50%, 
+                rgba(217, 119, 6, 0.9) 100%);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+        }
+
+        .cube-square {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            min-height: 70px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cube-square::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.6), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cube-square:hover::before {
+            left: 100%;
+        }
+
+        .cube-square[data-module] {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.3);
+            font-size: 1.4rem;
+            font-weight: 900;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .cube-square[data-module]:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .cube-square[data-module].completed {
+            background: linear-gradient(135deg, 
+                rgba(16, 185, 129, 0.8), 
+                rgba(5, 150, 105, 1)) !important;
+            border-color: rgba(16, 185, 129, 0.8);
+        }
+
+        .cube-square[data-module].completed::after {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--success);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .cube-square[data-module].current {
+            background: linear-gradient(135deg, 
+                var(--primary-orange), 
+                var(--primary-green)) !important;
+            animation: currentPulse 2s infinite ease-in-out;
+            border-color: rgba(249, 115, 22, 1);
+        }
+
+        .cube-square[data-module].current::after {
+            content: '▶';
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-orange);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        /* More dramatic 3D rotation */
+        @keyframes rotateCube {
+            0% { 
+                transform: rotateX(-15deg) rotateY(15deg) rotateZ(0deg);
+            }
+            16.66% { 
+                transform: rotateX(-15deg) rotateY(-75deg) rotateZ(0deg);
+            }
+            33.33% { 
+                transform: rotateX(-15deg) rotateY(-165deg) rotateZ(0deg);
+            }
+            50% { 
+                transform: rotateX(-15deg) rotateY(-255deg) rotateZ(0deg);
+            }
+            66.66% { 
+                transform: rotateX(-105deg) rotateY(-255deg) rotateZ(0deg);
+            }
+            83.33% { 
+                transform: rotateX(-195deg) rotateY(-255deg) rotateZ(0deg);
+            }
+            100% { 
+                transform: rotateX(-375deg) rotateY(-345deg) rotateZ(0deg);
+            }
+        }
+
+        @keyframes currentPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(249, 115, 22, 0.8);
+                transform: scale(1.05);
+            }
+        }
+
+        /* Ensure 3D context is preserved */
+        .cube-navigation {
+            background: linear-gradient(135deg, var(--white) 0%, #fafafa 100%);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            border: 1px solid rgba(249, 115, 22, 0.1);
+            transform-style: preserve-3d; /* Ensure 3D context */
+        }
+
+        /* Premium Cube Controls */
+        .cube-navigation {
+            background: linear-gradient(135deg, var(--white) 0%, #fafafa 100%);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            border: 1px solid rgba(249, 115, 22, 0.1);
+            transform-style: preserve-3d; /* Ensure 3D context */
+        }
+
+        .cube-navigation h3 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--gray-900);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cube-navigation p {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-xl);
+            font-size: 1.125rem;
+        }
+
+        .cube-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .cube-control-btn {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            border: 2px solid var(--gray-200);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cube-control-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cube-control-btn:hover {
+            color: white;
+            border-color: var(--primary-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cube-control-btn:hover::before {
+            left: 0;
+        }
+
+        .cube-control-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-orange);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cube-control-btn.active::before {
+            left: 0;
+        }
+
+        /* Discount & Promotion Styling */
+        .pricing-discount {
+            margin: var(--spacing-md) 0;
+            animation: slideInDiscount 0.5s ease-out;
+        }
+
+        .discount-banner {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .discount-banner strong {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .discount-banner span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        @keyframes slideInDiscount {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Multi-Currency Display */
+        .currency-selector {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+            text-align: center;
+        }
+
+        .currency-selector h4 {
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.875rem;
+        }
+
+        .currency-options {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .currency-btn {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .currency-btn:hover {
+            border-color: var(--primary-orange);
+            background: rgba(249, 115, 22, 0.05);
+        }
+
+        .currency-btn.active {
+            background: var(--primary-orange);
+            color: white;
+            border-color: var(--primary-orange);
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: var(--shadow-xl);
+            z-index: 10002;
+            transition: right var(--transition-base);
+            overflow-y: auto;
+        }
+
+        .admin-panel.open {
+            right: 0;
+        }
+
+        .admin-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--spacing-lg);
+            position: sticky;
+            top: 0;
+        }
+
+        .admin-content {
+            padding: var(--spacing-lg);
+        }
+
+        .admin-section {
+            margin-bottom: var(--spacing-xl);
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: var(--spacing-lg);
+        }
+
+        .admin-section h3 {
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.125rem;
+        }
+
+        .discount-form {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
+        }
+
+        .admin-input {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+        }
+
+        .admin-input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+        }
+
+        .admin-select {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            background: var(--white);
+            font-size: 0.875rem;
+        }
+
+        .discount-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .discount-item {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .discount-item:last-child {
+            border-bottom: none;
+        }
+
+        .discount-info {
+            flex: 1;
+        }
+
+        .discount-code {
+            font-weight: 600;
+            color: var(--primary-orange);
+            font-family: var(--font-mono);
+        }
+
+        .discount-details {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-top: 0.25rem;
+        }
+
+        .discount-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-small {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .btn-danger {
+            background: var(--error);
+            color: white;
+            border: none;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            border: none;
+        }
+
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 10001;
+            font-size: 1.5rem;
+            transition: all var(--transition-fast);
+        }
+
+        .admin-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .cube-navigation h3 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--gray-900);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cube-navigation p {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-xl);
+            font-size: 1.125rem;
+        }
+
+        .cube-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .cube-control-btn {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            border: 2px solid var(--gray-200);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cube-control-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cube-control-btn:hover {
+            color: white;
+            border-color: var(--primary-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cube-control-btn:hover::before {
+            left: 0;
+        }
+
+        .cube-control-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-orange);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cube-control-btn.active::before {
+            left: 0;
+        }
+
+        /* Quiz-specific Styles (integratie in AI COLLLABS design) */
+        .quiz-container {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Quiz Hero */
+        .quiz-hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            text-align: center;
+        }
+
+        .quiz-hero h1 {
+            color: white;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .quiz-hero p {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xl);
+            opacity: 0.9;
+        }
+
+        /* Features Grid (AI COLLLABS style) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: var(--spacing-xl);
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            border: 1px solid var(--gray-200);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-orange);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-lg);
+            background: var(--gradient-primary);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Pricing Section (AI COLLLABS style) */
+        .pricing-section {
+            background: var(--white);
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .pricing-header h2 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .pricing-header p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            transition: all var(--transition-base);
+        }
+
+        .price-card:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .price-card.featured {
+            border-color: var(--primary-orange);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .price-card.featured::before {
+            content: "Populair";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .price-card h3 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--gray-900);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .price-period {
+            color: var(--gray-500);
+            font-size: 1rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .price-features li {
+            padding: var(--spacing-sm) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .price-features li::before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            width: 20px;
+        }
+
+        /* Dashboard Styles (AI COLLLABS theme) */
+        .dashboard-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--spacing-xl);
+            text-align: center;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .dashboard-header h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            flex: 1;
+            margin: 0 var(--spacing-md);
+        }
+
+        .progress-fill {
+            background: white;
+            height: 100%;
+            transition: width var(--transition-base);
+        }
+
+        .modules-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .modules-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .module-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            position: relative;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .module-card:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .module-card.completed {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .module-card.current {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-orange);
+        }
+
+        .module-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: var(--gray-100);
+        }
+
+        .module-card.completed::after {
+            content: "✓";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--white);
+            color: var(--success);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+
+        .ethics-badge {
+            background: var(--warning);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-md);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: var(--spacing-sm);
+            display: inline-block;
+        }
+
+        /* Quiz Interface */
+        .quiz-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .quiz-header h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .quiz-content {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .question {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            color: var(--gray-900);
+        }
+
+        .answers {
+            display: grid;
+            gap: var(--spacing-md);
+            max-width: 700px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .answer {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-align: left;
+        }
+
+        .answer:hover {
+            background: var(--gray-100);
+            border-color: var(--primary-orange);
+        }
+
+        .answer.selected {
+            background: rgba(249, 115, 22, 0.1);
+            border-color: var(--primary-orange);
+        }
+
+        .answer.correct {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success);
+        }
+
+        .answer.incorrect {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: var(--error);
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* AI Feedback (AI COLLLABS style) */
+        .ai-feedback {
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .ai-feedback h4 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .learning-suggestions {
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .learning-suggestions h4 {
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Results Section */
+        .results-section {
+            text-align: center;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(var(--success) 0deg, var(--success) var(--score-angle, 0deg), var(--gray-200) var(--score-angle, 0deg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-xl);
+            position: relative;
+        }
+
+        .score-circle::before {
+            content: '';
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .score-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 1;
+        }
+
+        /* Authentication Modal */
+        .auth-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(4px);
+        }
+
+        .auth-modal.hidden {
+            display: none;
+        }
+
+        .auth-content {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem var(--spacing-md);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: border-color var(--transition-fast);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--gray-100);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            transition: background var(--transition-fast);
+        }
+
+        .close-btn:hover {
+            background: var(--gray-200);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .modules-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .nav-container {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-md);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-xl);
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quiz-content {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+        }
+
+        /* Hidden utility */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(249, 115, 22, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-orange);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (originele AI COLLLABS nav) -->
+    <nav class="navbar" role="navigation">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" onclick="showSection('landing')">
+                <div class="nav-logo-icon">
+                    <span>L</span>
+                </div>
+                <div class="nav-logo-text">
+                    AI <span class="gradient-text">COLLLABS</span> Quiz
+                </div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#" onclick="showSection('landing')">Home</a>
+                <a href="#" onclick="showSection('pricing')">Prijzen</a>
+                <a href="#" onclick="showDashboard()" id="dashboardLink">Dashboard</a>
+                <a href="#" class="btn btn-primary" onclick="showAuth('login')" id="authBtn">Inloggen</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Landing Section -->
+        <section id="landing" class="quiz-container">
+            <div class="quiz-hero">
+                <div class="container">
+                    <h1>Leer AI op <span style="color: #fbbf24;">jouw niveau</span></h1>
+                    <p>Speel tegen multilingual AI, test je kennis in 25+ talen, en ontdek waar je meer wilt leren over kunstmatige intelligentie. Van kids (€0,99) tot enterprise (€899+) - voor iedereen het juiste niveau.</p>
+                    <button class="btn btn-large" style="background: white; color: var(--primary-orange);" onclick="showSection('pricing')">
+                        Bekijk Alle Plannen - Vanaf €0,99
+                    </button>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">AI</div>
+                    <h3>Multilingual AI Engine</h3>
+                    <p>AI die conversaties voert in 25+ talen - van Nederlandse bedrijfsethiek tot globale AI standaarden</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">ROI</div>
+                    <h3>Kids tot Enterprise</h3>
+                    <p>Complete leertrajecten voor alle leeftijden: Kids (€0,99), Personal (€8,99), Enterprise (€899+)</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">SEC</div>
+                    <h3>Veiligheid & Compliance</h3>
+                    <p>Ouderlijk toezicht voor kids, GDPR compliance voor bedrijven, enterprise security voor corporates</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">WL</div>
+                    <h3>Global Deployment</h3>
+                    <p>Van Nederlandse kinderkamers tot internationale boardrooms - overal dezelfde kwaliteit</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="hidden">
+            <div class="page-header">
+                <h1>Kies jouw <span class="gradient-text">AI leerplan</span></h1>
+                <p>Voor iedereen het juiste niveau - van beginners tot corporate teams</p>
+            </div>
+
+            <div class="pricing-section">
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>Particulier</h3>
+                        <div class="price">€8,99</div>
+                        <div class="price-period">per maand</div>
+                        <ul class="price-features">
+                            <li>Persoonlijke voortgang tracking</li>
+                            <li>Alle 16 AI modules toegankelijk</li>
+                            <li>AI tegenspeler met feedback</li>
+                            <li>Ethiek training in elke module</li>
+                            <li>Mobiele app toegang</li>
+                            <li>Behoefteanalyse en suggesties</li>
+                            <li>Community forum toegang</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="startSubscription('personal')">Start Gratis Proef</button>
+                    </div>
+
+                    <div class="price-card featured">
+                        <h3>Enterprise</h3>
+                        <div class="price">Vanaf €899</div>
+                        <div class="price-period">per maand</div>
+                        <p style="color: var(--gray-500); margin-bottom: 1rem; font-size: 0.875rem;">Schaalbare pricing op basis van gebruikers en features</p>
+                        <ul class="price-features">
+                            <li>Alle Personal features inbegrepen</li>
+                            <li>100-1000+ gebruikers (schaalbaar)</li>
+                            <li>Advanced analytics dashboard</li>
+                            <li>White-label platform branding</li>
+                            <li>Custom AI modules ontwikkeling</li>
+                            <li>Dedicated customer success manager</li>
+                            <li>Priority enterprise support (24/7)</li>
+                            <li>API integraties en SSO</li>
+                            <li>Compliance reporting (SOC2, ISO27001)</li>
+                            <li>On-premise deployment optie</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="startSubscription('enterprise')">Get Enterprise Quote</button>
+                    </div>
+
+                    <div class="price-card">
+                        <h3>Corporate Plus</h3>
+                        <div class="price">Op aanvraag</div>
+                        <div class="price-period">enterprise contract</div>
+                        <ul class="price-features">
+                            <li>Alle Enterprise features</li>
+                            <li>Custom AI model training</li>
+                            <li>Dedicated cloud infrastructure</li>
+                            <li>Advanced security & compliance</li>
+                            <li>Custom integrations (ERP, CRM, HRM)</li>
+                            <li>Multi-tenant architecture</li>
+                            <li>Global deployment support</li>
+                            <li>Executive briefing center toegang</li>
+                        </ul>
+                        <button class="btn btn-outline" onclick="contactSales()">Contact Enterprise Sales</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="quiz-container hidden">
+            <div class="dashboard-header">
+                <div class="container">
+                    <h2>Jouw AI Leerpad</h2>
+                    <div class="progress-container">
+                        <span>Module 6 van 16</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 37.5%;"></div>
+                        </div>
+                        <span>37.5% voltooid</span>
+                    </div>
+                    <p>Huidige focus: Ethiek in AI Besluitvorming</p>
+                </div>
+            </div>
+
+            <div class="modules-section">
+                <div class="container">
+                    <!-- Rubik's Cube Navigation -->
+                    <div class="cube-navigation">
+                        <h3>Interactieve Module Navigator</h3>
+                        <p>Klik op een vakje om een module te starten - elke zijde bevat andere AI onderwerpen</p>
+                        
+                        <div class="rubiks-container">
+                            <div class="rubiks-cube" id="rubiksCube">
+                                <!-- Front Face - Core Modules -->
+                                <div class="cube-face front">
+                                    <div class="cube-square completed" data-module="1" onclick="startModule(1)">1</div>
+                                    <div class="cube-square completed" data-module="2" onclick="startModule(2)">2</div>
+                                    <div class="cube-square completed" data-module="3" onclick="startModule(3)">3</div>
+                                    <div class="cube-square completed" data-module="4" onclick="startModule(4)">4</div>
+                                    <div class="cube-square completed" data-module="5" onclick="startModule(5)">5</div>
+                                    <div class="cube-square current" data-module="6" onclick="startModule(6)">6</div>
+                                    <div class="cube-square" data-module="7" onclick="startModule(7)">7</div>
+                                    <div class="cube-square" data-module="8" onclick="startModule(8)">8</div>
+                                    <div class="cube-square" data-module="9" onclick="startModule(9)">9</div>
+                                </div>
+                                
+                                <!-- Back Face - Advanced Modules -->
+                                <div class="cube-face back">
+                                    <div class="cube-square" data-module="10" onclick="startModule(10)">10</div>
+                                    <div class="cube-square" data-module="11" onclick="startModule(11)">11</div>
+                                    <div class="cube-square" data-module="12" onclick="startModule(12)">12</div>
+                                    <div class="cube-square" data-module="13" onclick="startModule(13)">13</div>
+                                    <div class="cube-square" data-module="14" onclick="startModule(14)">14</div>
+                                    <div class="cube-square" data-module="15" onclick="startModule(15)">15</div>
+                                    <div class="cube-square" data-module="16" onclick="startModule(16)">16</div>
+                                    <div class="cube-square">AI</div>
+                                    <div class="cube-square">ML</div>
+                                </div>
+                                
+                                <!-- Right Face - Business Focus -->
+                                <div class="cube-face right">
+                                    <div class="cube-square">BIZ</div>
+                                    <div class="cube-square">ROI</div>
+                                    <div class="cube-square">KPI</div>
+                                    <div class="cube-square">GOV</div>
+                                    <div class="cube-square">ORG</div>
+                                    <div class="cube-square">STR</div>
+                                    <div class="cube-square">IMP</div>
+                                    <div class="cube-square">OPT</div>
+                                    <div class="cube-square">SCL</div>
+                                </div>
+                                
+                                <!-- Left Face - Ethics & Compliance -->
+                                <div class="cube-face left">
+                                    <div class="cube-square">ETH</div>
+                                    <div class="cube-square">SEC</div>
+                                    <div class="cube-square">PRI</div>
+                                    <div class="cube-square">REG</div>
+                                    <div class="cube-square">AUD</div>
+                                    <div class="cube-square">CMP</div>
+                                    <div class="cube-square">GOV</div>
+                                    <div class="cube-square">POL</div>
+                                    <div class="cube-square">LEG</div>
+                                </div>
+                                
+                                <!-- Top Face - Technology -->
+                                <div class="cube-face top">
+                                    <div class="cube-square">AI</div>
+                                    <div class="cube-square">ML</div>
+                                    <div class="cube-square">DL</div>
+                                    <div class="cube-square">NLP</div>
+                                    <div class="cube-square">CV</div>
+                                    <div class="cube-square">API</div>
+                                    <div class="cube-square">ALG</div>
+                                    <div class="cube-square">DAT</div>
+                                    <div class="cube-square">SYS</div>
+                                </div>
+                                
+                                <!-- Bottom Face - Innovation -->
+                                <div class="cube-face bottom">
+                                    <div class="cube-square">R&D</div>
+                                    <div class="cube-square">INN</div>
+                                    <div class="cube-square">FUT</div>
+                                    <div class="cube-square">TRN</div>
+                                    <div class="cube-square">EVL</div>
+                                    <div class="cube-square">ADV</div>
+                                    <div class="cube-square">PRO</div>
+                                    <div class="cube-square">DEV</div>
+                                    <div class="cube-square">MAS</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="cube-controls">
+                            <button class="cube-control-btn active" onclick="setCubeSpeed('slow')">Analyse Mode</button>
+                            <button class="cube-control-btn" onclick="setCubeSpeed('normal')">Standard View</button>
+                            <button class="cube-control-btn" onclick="setCubeSpeed('fast')">Quick Overview</button>
+                            <button class="cube-control-btn" onclick="pauseCube()">Pause</button>
+                            <button class="cube-control-btn" onclick="resetCubeView()">Reset View</button>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; gap: var(--spacing-lg); margin-top: var(--spacing-lg); flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                                    37.5%
+                                </div>
+                                <div style="font-size: 0.875rem; color: var(--gray-600); font-weight: 500;">
+                                    Overall Progress
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                                    6/16
+                                </div>
+                                <div style="font-size: 0.875rem; color: var(--gray-600); font-weight: 500;">
+                                    Modules Completed
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                                    85%
+                                </div>
+                                <div style="font-size: 0.875rem; color: var(--gray-600); font-weight: 500;">
+                                    Average Score
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p style="font-size: 0.875rem; color: var(--gray-500); margin-top: var(--spacing-md);">
+                            <strong>Enterprise Tip:</strong> Use Analysis Mode voor gedetailleerde module planning en team readiness assessment
+                        </p>
+                    </div>
+                    
+                    <div class="modules-header">
+                        <h3>Of kies uit de module lijst</h3>
+                        <p>Klassieke grid weergave van alle 16 AI modules</p>
+                    </div>
+                    
+                    <div class="modules-grid">
+                        <div class="module-card completed" onclick="startModule(1)">
+                            <h4>1. AI Basics</h4>
+                            <p>Wat is kunstmatige intelligentie?</p>
+                            <div class="ethics-badge">Ethiek ✓</div>
+                        </div>
+                        
+                        <div class="module-card completed" onclick="startModule(2)">
+                            <h4>2. Machine Learning</h4>
+                            <p>Algoritmes die leren van data</p>
+                            <div class="ethics-badge">Bias & Eerlijkheid</div>
+                        </div>
+                        
+                        <div class="module-card completed" onclick="startModule(3)">
+                            <h4>3. Deep Learning</h4>
+                            <p>Neurale netwerken en AI</p>
+                            <div class="ethics-badge">Transparantie</div>
+                        </div>
+                        
+                        <div class="module-card completed" onclick="startModule(4)">
+                            <h4>4. Natural Language</h4>
+                            <p>AI begrijpt menselijke taal</p>
+                            <div class="ethics-badge">Privacy</div>
+                        </div>
+                        
+                        <div class="module-card completed" onclick="startModule(5)">
+                            <h4>5. Computer Vision</h4>
+                            <p>AI die beelden begrijpt</p>
+                            <div class="ethics-badge">Surveillance</div>
+                        </div>
+                        
+                        <div class="module-card current" onclick="startModule(6)">
+                            <h4>6. AI Ethiek</h4>
+                            <p>Verantwoorde AI ontwikkeling</p>
+                            <div class="ethics-badge">Core Module</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>7. Business AI</h4>
+                            <p>AI in bedrijfsprocessen</p>
+                            <div class="ethics-badge">ROI vs Ethiek</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>8. AI Governance</h4>
+                            <p>AI beleid en regelgeving</p>
+                            <div class="ethics-badge">Compliance</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>9. Healthcare AI</h4>
+                            <p>AI in de zorgverlening</p>
+                            <div class="ethics-badge">Patiënt Privacy</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>10. Finance AI</h4>
+                            <p>AI in financiële diensten</p>
+                            <div class="ethics-badge">Algorithmic Bias</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>11. Security AI</h4>
+                            <p>AI voor cybersecurity</p>
+                            <div class="ethics-badge">Privacy vs Security</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>12. Creative AI</h4>
+                            <p>AI creativiteit en kunst</p>
+                            <div class="ethics-badge">Copyright Issues</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>13. AI Leadership</h4>
+                            <p>AI strategie en management</p>
+                            <div class="ethics-badge">Verantwoordelijkheid</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>14. Future AI</h4>
+                            <p>AGI en toekomst trends</p>
+                            <div class="ethics-badge">Long-term Impact</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>15. AI Implementation</h4>
+                            <p>Praktische AI invoering</p>
+                            <div class="ethics-badge">Change Management</div>
+                        </div>
+                        
+                        <div class="module-card locked">
+                            <h4>16. AI Mastery</h4>
+                            <p>Expert niveau kennis</p>
+                            <div class="ethics-badge">Global Perspective</div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
+                        <button class="btn btn-primary btn-large" onclick="startModule(6)">
+                            Ga verder met Module 6: AI Ethiek
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-container hidden">
+            <div class="quiz-header">
+                <div class="container">
+                    <h2>Module 6: AI Ethiek</h2>
+                    <div class="progress-container">
+                        <span>Vraag <span id="currentQuestion">1</span> van 15</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="questionProgress" style="width: 6.67%;"></div>
+                        </div>
+                        <span>Ethiek Focus</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-content">
+                <div class="container">
+                    <div class="question" id="questionText">
+                        Wat is het belangrijkste ethische principe bij het ontwikkelen van AI systemen voor de Nederlandse markt?
+                    </div>
+
+                    <div class="answers" id="answersContainer">
+                        <div class="answer" onclick="selectAnswer(this, 0)">
+                            A) Maximale winstgevendheid voor het bedrijf zonder ethische beperkingen
+                        </div>
+                        <div class="answer" onclick="selectAnswer(this, 1)">
+                            B) Transparantie en eerlijkheid voor alle gebruikers conform GDPR
+                        </div>
+                        <div class="answer" onclick="selectAnswer(this, 2)">
+                            C) Snelst mogelijke implementatie om concurrentievoordeel te behalen
+                        </div>
+                        <div class="answer" onclick="selectAnswer(this, 3)">
+                            D) Technische complexiteit tonen om expertise te demonstreren
+                        </div>
+                    </div>
+
+                    <div class="quiz-actions">
+                        <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn" disabled>
+                            ← Vorige Vraag
+                        </button>
+                        <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
+                            Volgende Vraag →
+                        </button>
+                    </div>
+
+                    <div class="ai-feedback hidden" id="feedback">
+                        <h4>AI Analyse & Feedback</h4>
+                        <p id="feedbackText">Uitstekend! Transparantie en GDPR-compliance zijn inderdaad fundamenteel voor Nederlandse AI systemen. Als AI zou ik ook kiezen voor optie B, omdat dit de basis vormt voor vertrouwen tussen mens en machine.</p>
+                        
+                        <div class="learning-suggestions" style="background: rgba(255,255,255,0.1); margin-top: var(--spacing-md);">
+                            <h5>Verdieping aanbevolen:</h5>
+                            <ul style="color: rgba(255,255,255,0.9);">
+                                <li>Explainable AI (XAI) technieken en implementatie</li>
+                                <li>GDPR Article 22 en automated decision-making</li>
+                                <li>Bias detectie methodologieën voor Nederlandse context</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="quiz-container hidden">
+            <div class="results-section">
+                <div class="container">
+                    <h2>Module 6 Voltooid!</h2>
+                    
+                    <div class="score-circle" style="--score-angle: 288deg;">
+                        <div class="score-text">80%</div>
+                    </div>
+                    
+                    <h3>Uitstekende prestatie!</h3>
+                    <p>Je hebt 12 van de 15 vragen correct beantwoord in de AI Ethiek module</p>
+
+                    <div class="ai-feedback">
+                        <h4>AI Performance Analyse</h4>
+                        <p>Indrukwekkend! Je toont sterke begrip van AI ethiek fundamentals. Je hebt vooral uitgeblonken in vragen over transparantie en bias detection. Als AI competitor moet ik toegeven dat je me flink hebt uitgedaagd - vooral bij de GDPR compliance vragen!</p>
+                        
+                        <div style="margin-top: var(--spacing-md);">
+                            <strong>Jouw sterke punten:</strong>
+                            <ul style="text-align: left; margin-top: var(--spacing-sm); color: rgba(255,255,255,0.9);">
+                                <li>Transparantie principes (100% - perfecte score!)</li>
+                                <li>Bias herkenning (90% - beter dan 85% van gebruikers)</li>
+                                <li>Stakeholder belangen (85% - solide begrip)</li>
+                                <li>GDPR compliance (80% - Nederlandse focus goed)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="learning-suggestions">
+                        <h4>AI Aanbevolen Verdieping</h4>
+                        <p><strong>Gebaseerd op je antwoorden en mijn analyse adviseer ik extra aandacht voor:</strong></p>
+                        <ul style="text-align: left;">
+                            <li><strong>International AI Standards:</strong> IEEE en ISO normen voor ethische AI development</li>
+                            <li><strong>Long-term AI Impact:</strong> Societale gevolgen van AI beslissingen op de lange termijn</li>
+                            <li><strong>AI Ethics in Practice:</strong> Case studies van Nederlandse bedrijven</li>
+                            <li><strong>Stakeholder Communication:</strong> Ethische AI uitleggen aan niet-technische teams</li>
+                        </ul>
+                        
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-md); background: rgba(249, 115, 22, 0.1); border-radius: var(--radius-md);">
+                            <strong>Aanbeveling voor volgende stap:</strong><br>
+                            Module 7 (Business AI) bouwt perfect voort op je ethiek kennis met praktische business cases. Je bent klaar voor de uitdaging!
+                        </div>
+                    </div>
+
+                    <div style="margin-top: var(--spacing-xl);">
+                        <button class="btn btn-outline btn-large" onclick="showDashboard()">
+                            Terug naar Dashboard
+                        </button>
+                        <button class="btn btn-primary btn-large" onclick="startModule(7)">
+                            Start Module 7: Business AI
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="auth-modal hidden">
+        <div class="auth-content">
+            <button class="close-btn" onclick="closeAuth()">×</button>
+            <h3 id="authTitle">Inloggen bij AI COLLLABS Quiz</h3>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="email">Email adres</label>
+                    <input type="email" id="email" required placeholder="je@voorbeeld.nl">
+                </div>
+                <div class="form-group">
+                    <label for="password">Wachtwoord</label>
+                    <input type="password" id="password" required placeholder="Minimaal 8 karakters">
+                </div>
+                <div class="form-group" id="confirmPasswordGroup" style="display: none;">
+                    <label for="confirmPassword">Bevestig wachtwoord</label>
+                    <input type="password" id="confirmPassword" placeholder="Herhaal je wachtwoord">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" id="authSubmit">Inloggen</button>
+            </form>
+            <p style="text-align: center; margin-top: var(--spacing-md); color: var(--gray-600);">
+                <span id="authSwitchText">Nog geen account?</span>
+                <a href="#" onclick="toggleAuthMode()" id="authSwitchLink" style="color: var(--primary-orange); font-weight: 600;">Gratis registreren</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Global State Management
+        let currentUser = null;
+        let currentModule = 6;
+        let currentQuestionIndex = 0;
+        let selectedAnswer = null;
+        let moduleProgress = [1,1,1,1,1,0.5,0,0,0,0,0,0,0,0,0,0]; // Progress per module
+        let isAuthMode = 'login';
+        let userStats = {
+            questionsAnswered: 0,
+            correctAnswers: 0,
+            modulesCompleted: 5,
+            currentStreak: 3,
+            totalTime: 0
+        };
+
+        // Sample Questions Database (AI Ethiek Module)
+        const ethicsQuestions = [
+            {
+                question: "Wat is het belangrijkste ethische principe bij het ontwikkelen van AI systemen voor de Nederlandse markt?",
+                answers: [
+                    "Maximale winstgevendheid voor het bedrijf zonder ethische beperkingen",
+                    "Transparantie en eerlijkheid voor alle gebruikers conform GDPR", 
+                    "Snelst mogelijke implementatie om concurrentievoordeel te behalen",
+                    "Technische complexiteit tonen om expertise te demonstreren"
+                ],
+                correct: 1,
+                explanation: "Uitstekend! Transparantie en GDPR-compliance zijn inderdaad fundamenteel voor Nederlandse AI systemen. Als AI zou ik ook kiezen voor optie B, omdat dit de basis vormt voor vertrouwen tussen mens en machine.",
+                aiResponse: "Indrukwekkend gekozen! Ik zou precies hetzelfde antwoord geven. Transparantie is ook voor mij als AI essentieel.",
+                learningTopics: ["Explainable AI (XAI) technieken", "GDPR Article 22 compliance", "Nederlandse AI wetgeving"],
+                difficulty: "intermediate",
+                businessRelevance: "critical"
+            },
+            {
+                question: "Een Nederlandse bank wil AI gebruiken voor kredietbeoordeling. Welke ethische overweging is het meest cruciaal?",
+                answers: [
+                    "De snelheid van kredietgoedkeuring maximaliseren",
+                    "Ervoor zorgen dat het algoritme geen discriminatie toepast op basis van postcode of achternaam",
+                    "De technische complexiteit van het model verhogen",
+                    "De winstmarge per goedgekeurd krediet optimaliseren"
+                ],
+                correct: 1,
+                explanation: "Correct! Discriminatie voorkomen is essentieel in financiële AI. Nederlandse banken moeten extra opletten voor bias gebaseerd op postcodes (die wijken/buurten kunnen identificeren) en namen (die etniciteit kunnen suggereren).",
+                aiResponse: "Perfect! Als AI die mogelijk in zo'n systeem zou werken, vind ik het belangrijk dat mijn beslissingen fair zijn voor iedereen.",
+                learningTopics: ["Algorithmic fairness", "Financial AI regulations", "Bias detection in ML"],
+                difficulty: "advanced",
+                businessRelevance: "high"
+            },
+            {
+                question: "Je bedrijf ontwikkelt een AI chatbot voor klantenservice. Wat is de ethische verplichting?",
+                answers: [
+                    "Klanten laten denken dat ze met een mens praten voor betere ervaring",
+                    "Duidelijk communiceren dat het een AI is en wat de beperkingen zijn",
+                    "Alleen de meest positieve reviews van de chatbot publiceren",
+                    "Alle gesprekken opslaan voor marketing doeleinden"
+                ],
+                correct: 1,
+                explanation: "Absoluut juist! Transparantie over AI-gebruik is een ethische verplichting. Klanten hebben het recht te weten dat ze met AI interacteren, zodat ze hun verwachtingen daarop kunnen afstemmen.",
+                aiResponse: "100% mee eens! Ik zou ook willen dat mensen weten dat ze met mij praten. Eerlijkheid bouwt vertrouwen op.",
+                learningTopics: ["AI disclosure requirements", "User consent", "Chatbot ethics"],
+                difficulty: "beginner",
+                businessRelevance: "medium"
+            }
+        ];
+
+        // Authentication Functions
+        function showAuth(mode) {
+            isAuthMode = mode;
+            document.getElementById('authModal').classList.remove('hidden');
+            updateAuthModal();
+        }
+
+        function closeAuth() {
+            document.getElementById('authModal').classList.add('hidden');
+        }
+
+        function toggleAuthMode() {
+            isAuthMode = isAuthMode === 'login' ? 'register' : 'login'; 
+            updateAuthModal();
+        }
+
+        function updateAuthModal() {
+            const title = document.getElementById('authTitle');
+            const submit = document.getElementById('authSubmit');
+            const switchText = document.getElementById('authSwitchText');
+            const switchLink = document.getElementById('authSwitchLink');
+            const confirmGroup = document.getElementById('confirmPasswordGroup');
+
+            if (isAuthMode === 'login') {
+                title.textContent = 'Inloggen bij AI COLLLABS Quiz';
+                submit.textContent = 'Inloggen';
+                switchText.textContent = 'Nog geen account?';
+                switchLink.textContent = 'Gratis registreren';
+                confirmGroup.style.display = 'none';
+            } else {
+                title.textContent = 'Gratis Account Aanmaken';
+                submit.textContent = 'Account Aanmaken';
+                switchText.textContent = 'Al een account?';
+                switchLink.textContent = 'Inloggen';
+                confirmGroup.style.display = 'block';
+            }
+        }
+
+        // Handle authentication form
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simulate authentication process
+            currentUser = { 
+                email: email, 
+                subscription: 'personal',
+                joinDate: new Date(),
+                progress: moduleProgress
+            };
+            
+            // Update UI
+            document.getElementById('authBtn').textContent = 'Dashboard';
+            document.getElementById('authBtn').onclick = showDashboard;
+            
+            // Save to localStorage for persistence
+            localStorage.setItem('aiQuizUser', JSON.stringify(currentUser));
+            
+            closeAuth();
+            showSection('dashboard');
+            
+            // Show welcome message
+            setTimeout(() => {
+                alert(`Welkom ${isAuthMode === 'register' ? 'bij' : 'terug'}, ${email}! Je AI leerjourney kan beginnen.`);
+            }, 500);
+        });
+
+        // Navigation Functions
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+            // Show requested section  
+            document.getElementById(section).classList.remove('hidden');
+            
+            // Update navigation active state
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        }
+
+        function showDashboard() {
+            if (!currentUser) {
+                showAuth('login');
+                return;
+            }
+            showSection('dashboard');
+        }
+
+        // Subscription Functions
+        function startSubscription(plan) {
+            if (!currentUser) {
+                showAuth('register');
+                return;
+            }
+            
+            const messages = {
+                'personal': 'Welkom bij het Particulier plan! Je hebt nu toegang tot alle 16 modules.',
+                'organization': 'Welkom bij het Organisatie plan! Je team dashboard wordt geactiveerd.',
+                'corporate': 'Bedankt voor je interesse in ons Corporate plan. We nemen binnenkort contact op.'
+            };
+            
+            alert(messages[plan]);
+            
+            if (plan !== 'corporate') {
+                currentUser.subscription = plan;
+                localStorage.setItem('aiQuizUser', JSON.stringify(currentUser));
+                showDashboard();
+            }
+        }
+
+        function contactSales() {
+            const message = `Geïnteresseerd in ons Corporate AI Quiz platform?
+
+Onze features:
+• Onbeperkte gebruikers
+• Custom AI modules  
+• White-label oplossing
+• Dedicated support
+• On-premise hosting
+
+Contact: sales@aicolllabs.nl
+Tel: +31 20 123 4567
+
+We nemen binnen 24 uur contact op!`;
+            
+            alert(message);
+        }
+
+        // Quiz Functions
+        function startModule(moduleNumber) {
+            if (!currentUser) {
+                showAuth('login');
+                return;
+            }
+            
+            // Check if module is unlocked
+            if (moduleNumber > 6 && moduleProgress[moduleNumber - 1] === 0) {
+                alert('Dit module is nog niet beschikbaar. Voltooi eerst de vorige modules!');
+                return;
+            }
+            
+            currentModule = moduleNumber;
+            currentQuestionIndex = 0;
+            selectedAnswer = null;
+            
+            showSection('quiz');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = ethicsQuestions[currentQuestionIndex % ethicsQuestions.length];
+            
+            // Update progress indicators
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('questionProgress').style.width = ((currentQuestionIndex + 1) / 15 * 100) + '%';
+            
+            // Load question content
+            document.getElementById('questionText').textContent = question.question;
+            
+            // Load answers
+            const container = document.getElementById('answersContainer');
+            container.innerHTML = '';
+            
+            question.answers.forEach((answer, index) => {
+                const div = document.createElement('div');
+                div.className = 'answer';
+                div.textContent = String.fromCharCode(65 + index) + ') ' + answer;
+                div.onclick = () => selectAnswer(div, index);
+                container.appendChild(div);
+            });
+            
+            // Reset button states
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('feedback').classList.add('hidden');
+            selectedAnswer = null;
+        }
+
+        function selectAnswer(element, answerIndex) {
+            // Clear previous selections
+            document.querySelectorAll('.answer').forEach(a => {
+                a.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            element.classList.add('selected');
+            selectedAnswer = answerIndex;
+            
+            // Get current question
+            const question = ethicsQuestions[currentQuestionIndex % ethicsQuestions.length];
+            const isCorrect = answerIndex === question.correct;
+            
+            // Visual feedback
+            element.classList.add(isCorrect ? 'correct' : 'incorrect');
+            if (!isCorrect) {
+                // Also highlight correct answer
+                const correctElement = document.querySelectorAll('.answer')[question.correct];
+                correctElement.classList.add('correct');
+            }
+            
+            // Show AI feedback
+            const feedback = document.getElementById('feedback');
+            const feedbackText = document.getElementById('feedbackText');
+            
+            let feedbackMessage = question.explanation;
+            if (isCorrect) {
+                feedbackMessage += `\n\n🤖 AI Response: "${question.aiResponse}"`;
+            } else {
+                feedbackMessage += `\n\n🤖 AI Analysis: "Ik begrijp je redenering, maar het juiste antwoord bouwt voort op fundamentele ethische principes. Laten we dit samen analyseren!"`;
+            }
+            
+            feedbackText.textContent = feedbackMessage;
+            feedback.classList.remove('hidden');
+            
+            // Update stats
+            userStats.questionsAnswered++;
+            if (isCorrect) {
+                userStats.correctAnswers++;
+                userStats.currentStreak++;
+            } else {
+                userStats.currentStreak = 0;
+            }
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (selectedAnswer === null) return;
+            
+            currentQuestionIndex++;
+            selectedAnswer = null;
+            
+            if (currentQuestionIndex >= 15) {
+                completeModule();
+            } else {
+                loadQuestion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                selectedAnswer = null;
+                loadQuestion();
+            }
+        }
+
+        function completeModule() {
+            // Update module progress
+            moduleProgress[currentModule - 1] = 1.0;
+            if (currentModule < 16) {
+                moduleProgress[currentModule] = 0; // Unlock next module
+            }
+            
+            userStats.modulesCompleted = moduleProgress.filter(p => p === 1.0).length;
+            
+            // Update cube visual progress
+            updateCubeProgress();
+            
+            // Save progress
+            if (currentUser) {
+                currentUser.progress = moduleProgress;
+                currentUser.stats = userStats;
+                localStorage.setItem('aiQuizUser', JSON.stringify(currentUser));
+            }
+            
+            // Celebration effect on cube
+            const completedSquare = cubeElement?.querySelector(`[data-module="${currentModule}"]`);
+            if (completedSquare) {
+                completedSquare.style.animation = 'pulse 1s ease-in-out 3';
+                showTemporaryMessage(`Module ${currentModule} voltooid. Voortgang bijgewerkt.`);
+            }
+            
+            showResults();
+        }
+
+        function showResults() {
+            showSection('results');
+            
+            // Calculate and display score
+            const correctAnswers = Math.floor(userStats.correctAnswers / userStats.questionsAnswered * 15);
+            const score = Math.round(correctAnswers / 15 * 100);
+            
+            document.querySelector('.score-text').textContent = score + '%';
+            document.querySelector('.score-circle').style.setProperty('--score-angle', (score * 3.6) + 'deg');
+            
+            // Update results text
+            const resultsText = document.querySelector('#results h3 + p');
+            resultsText.textContent = `Je hebt ${correctAnswers} van de 15 vragen correct beantwoord in de AI Ethiek module`;
+        }
+
+        // Rubik's Cube Control Functions
+        let cubeAnimationState = 'normal';
+        let cubeElement = null;
+
+        function initializeCube() {
+            cubeElement = document.getElementById('rubiksCube');
+            if (!cubeElement) return;
+            
+            // Add click interaction for the whole cube
+            cubeElement.addEventListener('click', function(e) {
+                if (!e.target.hasAttribute('data-module')) {
+                    // Clicked on cube but not on a module square - spin faster temporarily
+                    this.style.animationDuration = '2s';
+                    setTimeout(() => {
+                        if (cubeAnimationState === 'normal') {
+                            this.style.animationDuration = '20s';
+                        }
+                    }, 4000);
+                }
+            });
+            
+            // Update cube squares based on progress
+            updateCubeProgress();
+        }
+
+        function resetCubeView() {
+            if (!cubeElement) return;
+            
+            // Reset all states
+            cubeElement.style.animationPlayState = 'running';
+            cubeElement.style.animationDuration = '25s';
+            cubeElement.style.transform = 'scale(1)';
+            
+            // Update button states
+            document.querySelectorAll('.cube-control-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === 'Standard View') {
+                    btn.classList.add('active');
+                }
+                if (btn.textContent === 'Start') {
+                    btn.textContent = 'Pause';
+                }
+            });
+            
+            cubeAnimationState = 'normal';
+            showTemporaryMessage('Cube view reset naar standaard enterprise configuratie');
+        }
+
+        function setCubeSpeed(speed) {
+            if (!cubeElement) return;
+            
+            // Update button states
+            document.querySelectorAll('.cube-control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            cubeAnimationState = speed;
+            
+            const speeds = {
+                'slow': '45s',
+                'normal': '25s', 
+                'fast': '12s'
+            };
+            
+            cubeElement.style.animationDuration = speeds[speed];
+            
+            // Enterprise messaging
+            const messages = {
+                'slow': 'Analysis Mode geactiveerd - optimaal voor strategische module planning',
+                'normal': 'Standard View hersteld - ideaal voor reguliere navigatie',
+                'fast': 'Quick Overview Mode - efficiënt voor executive briefings'
+            };
+            
+            showTemporaryMessage(messages[speed]);
+        }
+
+        function pauseCube() {
+            if (!cubeElement) return;
+            
+            const isPaused = cubeElement.style.animationPlayState === 'paused';
+            
+            if (isPaused) {
+                cubeElement.style.animationPlayState = 'running';
+                event.target.textContent = 'Pause';
+                showTemporaryMessage('Cube rotatie hervat');
+            } else {
+                cubeElement.style.animationPlayState = 'paused';
+                event.target.textContent = 'Start';
+                showTemporaryMessage('Cube gepauzeerd - bekijk de modules in detail');
+            }
+        }
+
+        function updateCubeProgress() {
+            if (!cubeElement) return;
+            
+            // Update module squares based on progress
+            for (let i = 1; i <= 16; i++) {
+                const square = cubeElement.querySelector(`[data-module="${i}"]`);
+                if (!square) continue;
+                
+                square.classList.remove('completed', 'current');
+                
+                if (moduleProgress[i - 1] === 1.0) {
+                    square.classList.add('completed');
+                } else if (i === currentModule) {
+                    square.classList.add('current');
+                }
+            }
+        }
+
+        function showTemporaryMessage(message) {
+            // Create temporary message element
+            const msgElement = document.createElement('div');
+            msgElement.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--gradient-primary);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: var(--radius-md);
+                font-weight: 500;
+                z-index: 10001;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                box-shadow: var(--shadow-lg);
+            `;
+            msgElement.textContent = message;
+            document.body.appendChild(msgElement);
+            
+            // Animate in
+            requestAnimationFrame(() => {
+                msgElement.style.transform = 'translateX(0)';
+            });
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                msgElement.style.transform = 'translateX(100%)';
+                setTimeout(() => msgElement.remove(), 300);
+            }, 3000);
+        }
+
+        // Enhanced startModule function with cube interaction
+        function startModule(moduleNumber) {
+            if (!currentUser) {
+                showAuth('login');
+                return;
+            }
+            
+            // Check if module is unlocked
+            if (moduleNumber > 6 && moduleProgress[moduleNumber - 1] === 0) {
+                showTemporaryMessage(`Module ${moduleNumber} is vergrendeld. Voltooi eerst de vorige modules.`);
+                return;
+            }
+            
+            // Visual feedback on cube
+            const cubeSquare = cubeElement?.querySelector(`[data-module="${moduleNumber}"]`);
+            if (cubeSquare) {
+                cubeSquare.style.transform = 'scale(1.2)';
+                cubeSquare.style.boxShadow = '0 0 30px rgba(249, 115, 22, 0.8)';
+                setTimeout(() => {
+                    cubeSquare.style.transform = '';
+                    cubeSquare.style.boxShadow = '';
+                }, 1000);
+            }
+            
+            currentModule = moduleNumber;
+            currentQuestionIndex = 0;
+            selectedAnswer = null;
+            
+            // Show module start message
+            const moduleNames = {
+                1: "AI Basics", 2: "Machine Learning", 3: "Deep Learning", 4: "Natural Language",
+                5: "Computer Vision", 6: "AI Ethiek", 7: "Business AI", 8: "AI Governance",
+                9: "Healthcare AI", 10: "Finance AI", 11: "Security AI", 12: "Creative AI",
+                13: "AI Leadership", 14: "Future AI", 15: "AI Implementation", 16: "AI Mastery"
+            };
+            
+            showTemporaryMessage(`Start Module ${moduleNumber}: ${moduleNames[moduleNumber]}`);
+            
+            setTimeout(() => {
+                showSection('quiz');
+                loadQuestion();
+            }, 500);
+        }
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved user session
+            const savedUser = localStorage.getItem('aiQuizUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                moduleProgress = currentUser.progress || moduleProgress;
+                userStats = currentUser.stats || userStats;
+                
+                // Update UI for logged in user
+                document.getElementById('authBtn').textContent = 'Dashboard';
+                document.getElementById('authBtn').onclick = showDashboard;
+            }
+            
+            // Initialize Rubik's Cube
+            initializeCube();
+            
+            // Initialize pricing and discounts
+            initializePricing();
+            
+            // Show landing page by default
+            showSection('landing');
+            
+            console.log('AI COLLLABS Multilingual Quiz Platform geïnitialiseerd');
+            console.log('Premium 3D Rubik\'s Cube Navigation actief');
+            console.log('16 AI Modules met multilingual support (25+ talen)');
+            console.log('Multi-currency support: EUR, USD, GBP, CAD, AUD');
+            console.log('Discount system voor influencers en IT specialisten actief');
+            console.log('Complete pricing range: €0,99 Kids | €8,99 Personal | Vanaf €899 Enterprise | Corporate Plus op aanvraag');
+        });
+
+        // Utility Functions
+        function saveProgress() {
+            if (currentUser) {
+                currentUser.progress = moduleProgress;
+                currentUser.stats = userStats;
+                currentUser.lastActivity = new Date();
+                localStorage.setItem('aiQuizUser', JSON.stringify(currentUser));
+            }
+        }
+
+        function generateAIResponse(userAnswer, isCorrect, questionData) {
+            const responses = {
+                correct: [
+                    "Bravo! Je denkt net als ik zou denen als AI systeem.",
+                    "Perfect geanalyseerd! Dat is precies hoe ik het zou benaderen.",
+                    "Uitstekend! Je begrijpt AI ethiek beter dan sommige ontwikkelaars 😊",
+                    "Wow, je hebt me uitgedaagd met die snelle, juiste keuze!"
+                ],
+                incorrect: [
+                    "Ik zie je redenering, maar laten we samen kijken naar de ethische principes.",
+                    "Interessante keuze! Als AI kan ik uitleggen waarom een ander antwoord beter is.",
+                    "Geen probleem - zelfs AI maakt fouten tijdens het leerproces!",
+                    "Goede poging! Laten we samen de ethische overwegingen doorlopen."
+                ]
+            };
+            
+            const responseArray = isCorrect ? responses.correct : responses.incorrect;
+            return responseArray[Math.floor(Math.random() * responseArray.length)];
+        }
+
+        // Performance Tracking
+        function trackUserInteraction(event, data) {
+            const interaction = {
+                timestamp: new Date(),
+                event: event,
+                module: currentModule,
+                question: currentQuestionIndex,
+                data: data,
+                user: currentUser?.email
+            };
+            
+            // In production: send to analytics
+            console.log('📊 User Interaction:', interaction);
+        }
+
+        // Export for debugging
+        window.aiQuizDebug = {
+            currentUser,
+            moduleProgress,
+            userStats,
+            ethicsQuestions,
+            showSection,
+            startModule
+        };
+    </script>
+</body>
+</html>
