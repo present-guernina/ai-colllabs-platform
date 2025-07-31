@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI COLLLABS - Meet Claudette | Uw AI Transformation Partner</title>
+    <meta name="description" content="Meet Claudette, uw strategische AI gids die de perfecte oplossing vindt voor uw unieke situatie. Van kinderen tot bedrijven - iedereen krijgt de juiste begeleiding.">
+    
+    <style>
+        :root {
+            --primary-orange: #FF7310;
+            --primary-green: #2E7D32;
+            --accent-blue: #1976D2;
+            --gray-25: #FCFCFD;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            
+            --gradient-primary: linear-gradient(135deg, #FF7310 0%, #2E7D32 100%);
+            --gradient-hero: linear-gradient(135deg, #FF7310 0%, #F59E0B 25%, #22C55E 75%, #2E7D32 100%);
+            
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-25);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Language Selection Modal */
+        .language-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        .language-modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .language-selector {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .language-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        
+        .language-subtitle {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+        
+        .language-options {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .language-option {
+            padding: 1rem 2rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .language-option:hover {
+            border-color: var(--primary-orange);
+            background: rgba(255, 115, 16, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .language-flag {
+            font-size: 1.5rem;
+        }
+        
+        .language-name {
+            font-weight: 600;
+            flex-grow: 1;
+            text-align: left;
+            margin-left: 1rem;
+        }
+        
+        /* Claudette Hero Section */
+        .claudette-hero {
+            min-height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 115, 16, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(46, 125, 50, 0.08) 0%, transparent 50%),
+                var(--gray-25);
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        
+        .claudette-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .claudette-avatar {
+            position: relative;
+            text-align: center;
+        }
+        
+        .claudette-text {
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .secondary-elements {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            margin-top: 3rem;
+            max-width: 600px;
+        }
+        
+        .world-globe-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #1976D2 0%, #0D47A1 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: worldRotate 12s linear infinite;
+        }
+        
+        @keyframes worldRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .globe-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(255,255,255,0.3) 5%, transparent 25%),
+                radial-gradient(circle at 70% 60%, rgba(255,255,255,0.2) 3%, transparent 20%);
+            border-radius: 50%;
+        }
+        
+        .globe-text {
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .avatar-container {
+            width: 350px;
+            height: 350px;
+            margin: 0 auto 2rem;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .avatar-sphere {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255, 255, 255, 0.8) 0%, 
+                var(--primary-orange) 20%, 
+                var(--primary-green) 80%, 
+                #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 6rem;
+            font-weight: bold;
+            animation: floatSphere 4s ease-in-out infinite;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.3),
+                inset -10px -10px 20px rgba(0,0,0,0.2),
+                inset 10px 10px 20px rgba(255,255,255,0.1);
+        }
+        
+        @keyframes floatSphere {
+            0%, 100% { 
+                transform: translateY(0px) rotateY(0deg);
+                box-shadow: 
+                    0 20px 40px rgba(0,0,0,0.3),
+                    inset -10px -10px 20px rgba(0,0,0,0.2),
+                    inset 10px 10px 20px rgba(255,255,255,0.1);
+            }
+            25% { 
+                transform: translateY(-10px) rotateY(90deg);
+                box-shadow: 
+                    0 30px 50px rgba(0,0,0,0.4),
+                    inset -15px -15px 25px rgba(0,0,0,0.3),
+                    inset 15px 15px 25px rgba(255,255,255,0.15);
+            }
+            50% { 
+                transform: translateY(-5px) rotateY(180deg);
+                box-shadow: 
+                    0 25px 45px rgba(0,0,0,0.35),
+                    inset -12px -12px 22px rgba(0,0,0,0.25),
+                    inset 12px 12px 22px rgba(255,255,255,0.12);
+            }
+            75% { 
+                transform: translateY(-10px) rotateY(270deg);
+                box-shadow: 
+                    0 30px 50px rgba(0,0,0,0.4),
+                    inset -15px -15px 25px rgba(0,0,0,0.3),
+                    inset 15px 15px 25px rgba(255,255,255,0.15);
+            }
+        }
+        
+        .avatar-glow {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 115, 16, 0.3) 0%, transparent 70%);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        .claudette-info {
+            margin-top: 1rem;
+        }
+        
+        .claudette-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        
+        .claudette-role {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+        }
+        
+        .claudette-text {
+            max-width: 600px;
+        }
+        
+        .brand-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Vision Film Section */
+        .vision-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .vision-content {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+        
+        .vision-film-container {
+            position: relative;
+            background: var(--gray-900);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 2rem 0;
+        }
+        
+        .vision-film-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        
+        .film-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .vision-film-container:hover .film-overlay {
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .play-button-large {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 115, 16, 0.9);
+            border: 3px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .play-button-large:hover {
+            background: var(--primary-orange);
+            transform: scale(1.1);
+        }
+        
+        .play-icon-large {
+            width: 0;
+            height: 0;
+            border-left: 35px solid white;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            margin-left: 8px;
+        }
+        
+        .film-info {
+            text-align: center;
+        }
+        
+        .film-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .film-info p {
+            font-size: 1rem;
+            opacity: 0.8;
+            color: var(--primary-orange);
+            font-weight: 600;
+        }
+        
+        .film-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hero);
+            z-index: 1;
+        }
+        
+        .preview-gradient {
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, 
+                    rgba(255, 115, 16, 0.3) 0%, 
+                    rgba(46, 125, 50, 0.3) 50%, 
+                    rgba(25, 118, 210, 0.3) 100%
+                );
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { 
+                background: linear-gradient(45deg, 
+                    rgba(255, 115, 16, 0.3) 0%, 
+                    rgba(46, 125, 50, 0.3) 50%, 
+                    rgba(25, 118, 210, 0.3) 100%
+                );
+            }
+            33% { 
+                background: linear-gradient(135deg, 
+                    rgba(46, 125, 50, 0.3) 0%, 
+                    rgba(25, 118, 210, 0.3) 50%, 
+                    rgba(255, 115, 16, 0.3) 100%
+                );
+            }
+            66% { 
+                background: linear-gradient(225deg, 
+                    rgba(25, 118, 210, 0.3) 0%, 
+                    rgba(255, 115, 16, 0.3) 50%, 
+                    rgba(46, 125, 50, 0.3) 100%
+                );
+            }
+        }
+        
+        /* Navigation Section */
+        .navigation-section {
+            padding: 4rem 0;
+            background: var(--gray-50);
+        }
+        
+        .navigation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .nav-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .nav-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .nav-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-description {
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255,115,16,0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255,115,16,0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-300);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+            transform: translateY(-2px);
+        }
+        
+        /* Text Links */
+        .text-link {
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+        
+        .text-link:hover {
+            color: var(--primary-green);
+            border-bottom-color: var(--primary-green);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: var(--gray-600);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {            
+            .avatar-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .world-globe-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .globe-text {
+                font-size: 0.8rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .secondary-elements {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .navigation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selection Modal -->
+    <div id="languageModal" class="language-modal">
+        <div class="language-selector">
+            <h2 class="language-title">Welkom bij AI COLLLABS</h2>
+            <p class="language-subtitle">Kies uw taal voor de beste experience</p>
+            
+            <div class="language-options">
+                <div class="language-option" onclick="selectLanguage('nl')">
+                    <span class="language-flag">NL</span>
+                    <span class="language-name">Nederlands</span>
+                    <span>→</span>
+                </div>
+                <div class="language-option" onclick="selectLanguage('en')">
+                    <span class="language-flag">EN</span>
+                    <span class="language-name">English</span>
+                    <span>→</span>
+                </div>
+                <div class="language-option" onclick="selectLanguage('de')">
+                    <span class="language-flag">DE</span>
+                    <span class="language-name">Deutsch</span>
+                    <span>→</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Claudette Hero Section -->
+    <section class="claudette-hero">
+        <div class="container">
+            <div class="claudette-content fade-in">
+                <div class="claudette-avatar">
+                    <div class="avatar-container">
+                        <div class="avatar-glow"></div>
+                        <div class="avatar-sphere">C</div>
+                    </div>
+                    <div class="claudette-info">
+                        <h1 class="claudette-name">Claudette</h1>
+                        <p class="claudette-role">Uw AI Transformation Partner</p>
+                    </div>
+                </div>
+                
+                <div class="claudette-text">
+                    <div class="brand-logo">AI COLLLABS</div>
+                    
+                    <h2 class="hero-title">
+                        Meet Claudette
+                    </h2>
+                    
+                    <p class="hero-subtitle">
+                        Ze begrijpt uw situatie. Stelt de juiste vragen. 
+                        Brengt u naar precies het juiste deel waar u verder kunt.
+                    </p>
+                    
+                    <button class="btn btn-primary" onclick="startClaudetteConsultation()">
+                        Start Gesprek
+                    </button>
+                </div>
+                
+                <div class="secondary-elements">
+                    <div class="world-globe-container">
+                        <div class="globe-overlay"></div>
+                        <div class="globe-text">
+                            AI<br>
+                            Wereldwijd
+                        </div>
+                    </div>
+                    
+                    <a href="#vision" class="btn btn-secondary">
+                        Bekijk Onze Visie
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Film Section -->
+    <section id="vision" class="vision-section">
+        <div class="container">
+            <div class="vision-content fade-in">
+                <h2 class="section-title">Onze Visie Op AI Democratisatie</h2>
+                <p class="section-subtitle">
+                    Ontdek waarom wij geloven dat elke situatie de juiste AI oplossing verdient
+                </p>
+                
+                <div class="vision-film-container" onclick="playVisionFilm()">
+                    <div class="film-overlay">
+                        <div class="play-button-large">
+                            <div class="play-icon-large"></div>
+                        </div>
+                        <div class="film-info">
+                            <h3>AI COLLLABS Vision</h3>
+                            <p>Powered by Adobe Creative AI</p>
+                        </div>
+                    </div>
+                    <div class="film-preview">
+                        <div class="preview-gradient"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation to Specialized Pages -->
+    <section class="navigation-section">
+        <div class="container">
+            <div class="fade-in" style="text-align: center;">
+                <h2 class="section-title">Waar Kunt U Terecht?</h2>
+                <p class="section-subtitle">
+                    Kies uw specialisatie of laat Claudette u helpen de juiste richting te vinden.
+                </p>
+            </div>
+            
+            <div class="navigation-grid">
+                <div class="nav-card">
+                    <div class="nav-icon">K</div>
+                    <h3 class="nav-title">AI Voor Kinderen</h3>
+                    <p class="nav-description">
+                        Veilige kennismaking met AI in beschermde omgeving
+                    </p>
+                    <a href="/ai-voor-kinderen" class="text-link">
+                        Ontdek onze Kids Platform →
+                    </a>
+                </div>
+                
+                <div class="nav-card">
+                    <div class="nav-icon">S</div>
+                    <h3 class="nav-title">AI In Het Onderwijs</h3>
+                    <p class="nav-description">
+                        Transformatie van traditioneel naar AI-versterkt leren
+                    </p>
+                    <a href="/ai-in-het-onderwijs" class="text-link">
+                        Bekijk onze onderwijsaanpak →
+                    </a>
+                </div>
+                
+                <div class="nav-card">
+                    <div class="nav-icon">B</div>
+                    <h3 class="nav-title">AI Voor Bedrijven</h3>
+                    <p class="nav-description">
+                        Slimme groei door strategische AI implementatie
+                    </p>
+                    <a href="/ai-voor-bedrijven" class="text-link">
+                        Ontdek onze business solutions →
+                    </a>
+                </div>
+                
+                <div class="nav-card" style="border: 2px solid var(--primary-orange); background: rgba(255, 115, 16, 0.05);">
+                    <div class="nav-icon" style="background: var(--primary-orange);">C</div>
+                    <h3 class="nav-title">Persoonlijk Gesprek</h3>
+                    <p class="nav-description">
+                        Laat Claudette uw situatie begrijpen en u begeleiden
+                    </p>
+                    <button class="btn btn-primary" onclick="startClaudetteConsultation()" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">
+                        Start Gesprek met Claudette
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AI COLLLABS</div>
+                <p>
+                    AI transformatie die niemand achterlaat.<br>
+                    Van kinderen tot enterprises - iedereen mee naar de toekomst.
+                </p>
+                <div style="margin-top: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="/contact" class="text-link">Contact</a>
+                    <a href="/privacy" class="text-link">Privacy</a>
+                    <a href="/over-ons" class="text-link">Over Ons</a>
+                    <a href="/blog" class="text-link">Blog</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Selection System
+        function selectLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            document.getElementById('languageModal').classList.add('hidden');
+            console.log('Language selected:', lang);
+        }
+        
+        // Vision Film Integration
+        function playVisionFilm() {
+            alert('Vision Film Loading...\n\nAdobe Creative AI Movie Integration:\n\n- Strategic visie documentaire\n- Leadership philosophy showcase\n- Transformation methodology deep-dive\n- Global impact testimonials\n- Interactive consultation bridge\n\nFilm wordt geladen...');
+            
+            console.log('Vision film integration activated - Adobe Creative AI');
+            
+            setTimeout(() => {
+                if (confirm('Vision film voltooid!\n\nWilt u uw strategische assessment starten met Claudette?')) {
+                    startClaudetteConsultation();
+                }
+            }, 4000);
+        }
+        
+        // Claudette Consultation Integration
+        function startClaudetteConsultation() {
+            alert('Claudette Consultation Activating...\n\nLaunching interactive consultation:\n- Persona-based communication\n- Real-time needs assessment\n- Strategic solution recommendations\n- Automatic routing to specialized pages\n\nClaudette interface wordt geladen...');
+            console.log('Claudette consultation initiated');
+        }
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Animation Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('AI COLLLABS Landing Page Loaded - Clean Architecture');
+            
+            const selectedLanguage = localStorage.getItem('selectedLanguage');
+            if (selectedLanguage) {
+                document.getElementById('languageModal').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
